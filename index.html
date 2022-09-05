@@ -11,12 +11,13 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	<script defer src="assets/js/wow.min.js"></script>
 	<script defer src="assets/js/swiper.min.js"></script>
+	<script defer src="assets/js/plugins/mask.min.js"></script>
 	<script defer src="assets/js/alpine.min.js"></script>
 	<link rel="stylesheet" href="assets/css/animate.min.css">
 	<link rel="stylesheet" href="assets/css/swiper.min.css">
 
 </head>
-<body class="font-montserrat" x-data="{unscroll: false}" :class="unscroll ? 'overflow-hidden' : 'overflow-auto'">
+<body class="font-montserrat" x-data="{unscroll: false, modal: false}" :class="unscroll ? 'overflow-hidden' : 'overflow-auto'">
 	<header class="header">
 		<div class="container-fluid">
 			<div class="flex justify-between items-center">
@@ -174,12 +175,12 @@
 					<h1 class="text-big mb-[10px] small:text-spidy"><strong>Срочная техпомощь на дороге в Москве. 20 минут. Звони!</strong> Круглосуточный прием заявок 24/7</h1>
 					<div class="flex items-center mb-[22px]"><span class="w-[51px] h-[1px] bg-main mr-[13px]"></span>по Москве и области. <br> Срочный ремонт автомобиля</div>
 					<p class="max-w-[70%] mb-[22px]">в 2х словах <strong>опишите</strong> задачу <strong>сфоткайте</strong> и получите точную стоимость через 30 секунд</p>
-					<a href="#" class="blind max-w-[230px] flex justify-center items-center px-[17px] py-[21px] regular:py-[15px] bg-secondary rounded-large text-stable font-semibold mb-[30px] hover:scale-105 transition-all duration-300 ease-in-out">
+					<button type="button" @click="modal = true; unscroll = true" class="blind max-w-[230px] flex justify-center items-center px-[17px] py-[21px] regular:py-[15px] bg-secondary rounded-large text-stable font-semibold mb-[30px] hover:scale-105 transition-all duration-300 ease-in-out">
 						<svg width="29" height="30" class="mr-[12px]" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M24.7632 4.84954C23.4277 3.50622 21.8373 2.44123 20.0846 1.71662C18.3319 0.992017 16.4521 0.622294 14.5546 0.628996C6.60365 0.628996 0.123807 7.08502 0.116524 15.0108C0.116524 17.5493 0.782898 20.0188 2.041 22.2053L0 29.6611L7.65419 27.6615C9.77167 28.81 12.1439 29.4119 14.5546 29.4125H14.5619C22.5147 29.4125 28.9927 22.9565 29 15.0235C29.0018 13.1329 28.6282 11.2605 27.9008 9.51442C27.1733 7.76831 26.1064 6.1829 24.7614 4.84954H24.7632ZM14.5546 26.9775C12.4044 26.9782 10.2937 26.4015 8.44437 25.3081L8.00741 25.0468L3.4666 26.2335L4.67918 21.8188L4.39515 21.3634C3.19314 19.4587 2.55743 17.2536 2.56171 15.0035C2.56171 8.42412 7.9455 3.05681 14.5619 3.05681C16.1381 3.05399 17.6994 3.36214 19.1555 3.9635C20.6117 4.56486 21.9341 5.44753 23.0463 6.56062C24.1625 7.66938 25.0473 8.98739 25.6498 10.4386C26.2523 11.8899 26.5605 13.4457 26.5566 15.0162C26.5493 21.6192 21.1656 26.9775 14.5546 26.9775ZM21.1364 18.0247C20.7777 17.845 19.0062 16.9759 18.673 16.8525C18.3417 16.7346 18.0995 16.6729 17.8628 17.0322C17.6207 17.3896 16.9288 18.2043 16.7212 18.4384C16.5137 18.6797 16.2988 18.7069 15.9383 18.5291C15.5797 18.3477 14.4162 17.9703 13.0398 16.7418C11.9656 15.7892 11.2464 14.6098 11.0316 14.2523C10.824 13.8931 11.0115 13.7007 11.1918 13.5211C11.3502 13.3614 11.5505 13.1001 11.7307 12.8933C11.9128 12.6864 11.9729 12.534 12.0912 12.2945C12.2096 12.0513 12.1531 11.8445 12.0639 11.6648C11.9729 11.4852 11.2537 9.71242 10.9496 8.99751C10.6583 8.29166 10.3616 8.38965 10.1394 8.38057C9.93188 8.36787 9.68973 8.36787 9.44757 8.36787C9.26471 8.3724 9.08476 8.41455 8.91902 8.49168C8.75327 8.56881 8.60531 8.67924 8.48443 8.81606C8.15306 9.17533 7.22633 10.0445 7.22633 11.8173C7.22633 13.59 8.51902 15.2939 8.70109 15.5352C8.87952 15.7765 11.2391 19.4037 14.8605 20.9642C15.7162 21.3362 16.3899 21.5557 16.9161 21.7227C17.7809 21.9985 18.562 21.9567 19.1846 21.8678C19.8765 21.7626 21.3167 20.9969 21.6207 20.1567C21.9193 19.3148 21.9193 18.5963 21.8283 18.4457C21.7391 18.2932 21.4969 18.2043 21.1364 18.0247Z" fill="white"/>
 							</svg>
 							Узнать стоимость по  Whats app
-					</a>
+					</button>
 					<div class="flex items-center space-x-[9px]">
 						<span class="text-darkgray text-medium">Или</span>
 						<a href="#" class="w-[48px] h-[48px] hover:scale-105 transition-all duration-300 ease-in-out" style="background-image: url(assets/img/telegram.webp); background-size: 100%; background-repeat: no-repeat;"></a>
@@ -191,6 +192,34 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal transition-all duration-300 ease-in-out" x-cloak :style="modal ? 'visibility:visible;opacity:1;' : 'visibility:hidden;opacity:0;'">
+		<div class="fixed w-full h-full left-0 top-0 bg-hidy flex justify-center items-center z-[10000000000]">
+			<div class="w-[420px] max-w-[420px] rounded-medium bg-lighty h-[70%] py-[15px] px-[20px] overflow-auto transition-all duration-300 ease-in-out" :style="modal ? 'transform:translateY(0);' : 'transform:translateY(30%);'">
+				<div class="flex justify-end">
+					<button type="button" @click="modal = false; unscroll = false" class="rotate-45 text-gray hover:text-primary text-large">+</button>
+				</div>
+				<p class="text-middle text-center font-semibold">Разработаем предложение <br> в течение дня</p>
+				<div class="flex flex-col items-center mb-[15px] mt-[50px]">
+					<p class="text-center text-normal mt-[15px] mb-[10px]">Ваше имя:</p>
+					<input type="text" placeholder="Введите ваше имя..." class="text-normal outline-none border-[1px] border-solid border-gborder rounded-medium pl-[20px] w-full py-[12px]">
+				</div>
+				<div class="flex flex-col items-center mb-[15px]">
+					<p class="text-center text-normal mt-[15px] mb-[10px]">Ваш телефон:</p>
+					<input type="tel" placeholder="+7(---) -- ---" class="text-normal outline-none border-[1px] border-solid border-gborder rounded-medium pl-[20px] w-full py-[12px]" x-mask="+7(999) 999-99-99">
+				</div>
+				<div class="flex flex-col items-center mb-[15px]">
+					<p class="text-center text-normal mt-[15px] mb-[10px]">Имейл:</p>
+					<input type="mail" placeholder="Ваш имейл..." class="text-normal outline-none border-[1px] border-solid border-gborder rounded-medium pl-[20px] w-full py-[12px]">
+				</div>
+				<button class="uppercase w-full my-[10px] py-[21px] text-center bg-primary text-normal text-white rounded-medium hover:shadow-3lr transition-all duration-300 ease-in-out">Получить предложение</button>
+				<div class="flex items-center space-x-[12px] mt-[15px]">
+					<input type="checkbox" class="accent-primary" id="val-id" checked>
+					<label for="val-id" class="text-skygray text-small">Вы даете полное согласие на <a href="#" class="text-primary underline hover:no-underline transition">условия обработки персональных данных</a></label>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 
 	<main style="margin-top: 30px;">
 		<div class="text text-center">
@@ -217,7 +246,7 @@
 							</div>
 						</div>      
 					</div>
-					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="130ms">
+					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="150ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/blocks/2.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px] mb-auto">Замена АКБ</p>
 							<p class="font-semibold text-medium small:text-regular text-center mb-[30px] small:mb-[15px]">Цена от 2500руб</p>
@@ -233,7 +262,7 @@
 							</div>
 						</div>      
 					</div>
-					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="160ms">
+					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="200ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/blocks/3.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px] mb-auto">Отключение сигнализации</p>
 							<p class="font-semibold text-medium small:text-regular text-center mb-[30px] small:mb-[15px]">Цена от 2500руб</p>
@@ -249,7 +278,7 @@
 							</div>
 						</div>      
 					</div>
-					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="190ms">
+					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="250ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/blocks/4.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px] mb-auto">Запуск двигателя</p>
 							<p class="font-semibold text-medium small:text-regular text-center mb-[30px] small:mb-[15px]">Цена от 2500руб</p>
@@ -265,7 +294,7 @@
 							</div>
 						</div>      
 					</div>
-					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="210ms">
+					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="300ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/blocks/5.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px] mb-auto">Автоэлектрик с выездом</p>
 							<p class="font-semibold text-medium small:text-regular text-center mb-[30px] small:mb-[15px]">Цена от 2500руб</p>
@@ -281,7 +310,7 @@
 							</div>
 						</div>      
 					</div>
-					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="220ms">
+					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="350ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/blocks/6.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px] mb-auto">Разблокировать коробку АКПП</p>
 							<p class="font-semibold text-medium small:text-regular text-center mb-[30px] small:mb-[15px]">Цена от 2500руб</p>
@@ -297,7 +326,7 @@
 							</div>
 						</div>      
 					</div>
-					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="230ms">
+					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="400ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/blocks/3.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px] mb-auto">Отключение сигнализации</p>
 							<p class="font-semibold text-medium small:text-regular text-center mb-[30px] small:mb-[15px]">Цена от 2500руб</p>
@@ -313,7 +342,7 @@
 							</div>
 						</div>      
 					</div>
-					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="240ms">
+					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="450ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/blocks/4.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px] mb-auto">Запуск двигателя</p>
 							<p class="font-semibold text-medium small:text-regular text-center mb-[30px] small:mb-[15px]">Цена от 2500руб</p>
@@ -330,7 +359,7 @@
 						</div>      
 					</div>				</div>
 				<div class="flex justify-center">
-					<button type="button" class="px-[25px] py-[13px] bg-primary text-white rounded-regular mt-[61px]">Показать все услуги</button>
+					<button type="button" class="px-[25px] py-[13px] bg-primary text-white rounded-regular mt-[61px] hover:bg-primaryaccent transition ease-in-out duration-300 animate__fadeInUp wow" data-wow-duration="1000ms" data-wow-delay="100ms">Показать все услуги</button>
 				</div>
 			</div>
 		</div>
@@ -403,7 +432,7 @@
 		</div>
 		<div class="list" style="margin-top: 60px; margin-bottom: 60px;">
 			<div class="container-fluid">
-				<div class="flex flex-wrap" x-init="new WOW().init();">
+				<div class="flex flex-wrap">
 					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="100ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/list/1.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px]">Ремонт авто</p>
@@ -430,7 +459,7 @@
 							</div>
 						</div>      
 					</div>
-					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="130ms">
+					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="150ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/list/2.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px]">Выездная помошь</p>
 							<ul class="mt-[11px] pl-[30px] spark:pl-[20px] small:pl-[15px] mb-auto">
@@ -456,7 +485,7 @@
 							</div>
 						</div>      
 					</div>
-					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="160ms">
+					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="200ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/list/3.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px]">Автоэлектрик</p>
 							<ul class="mt-[11px] pl-[30px] spark:pl-[20px] small:pl-[15px] mb-auto">
@@ -478,7 +507,7 @@
 							</div>
 						</div>      
 					</div>
-					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="190ms">
+					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="250ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/list/4.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px]">Диагностика</p>
 							<ul class="mt-[11px] pl-[30px] spark:pl-[20px] small:pl-[15px] mb-auto">
@@ -500,7 +529,7 @@
 							</div>
 						</div>      
 					</div>
-					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="210ms">
+					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="300ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/list/5.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px]">Шиномонтаж</p>
 							<ul class="mt-[11px] pl-[30px] spark:pl-[20px] small:pl-[15px] mb-auto">
@@ -521,7 +550,7 @@
 							</div>
 						</div>      
 					</div>
-					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="220ms">
+					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="350ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/list/2.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px]">Выездная помошь</p>
 							<ul class="mt-[11px] pl-[30px] spark:pl-[20px] small:pl-[15px] mb-auto">
@@ -547,7 +576,7 @@
 							</div>
 						</div>      
 					</div>
-					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="230ms">
+					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="400ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/list/3.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px]">Автоэлектрик</p>
 							<ul class="mt-[11px] pl-[30px] spark:pl-[20px] small:pl-[15px] mb-auto">
@@ -569,7 +598,7 @@
 							</div>
 						</div>      
 					</div>
-					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="240ms">
+					<div class="basis-1/4 bold:basis-1/3 stable:basis-1/2 reable:basis-full pt-[23px] px-[8px] animate__fadeInDown wow" data-wow-duration="1000ms" data-wow-delay="450ms">
 						<div class="flex flex-col rounded-medium text-white min-h-[417px] pt-[18px]" style="background-image: linear-gradient(0deg, rgba(16, 15, 15, 0.5), rgba(16, 15, 15, 0.5)), url(assets/img/demo/list/4.webp); background-size: cover;">
 							<p class="font-semibold text-medium small:text-regular pl-[30px] spark:pl-[20px] small:pl-[15px]">Диагностика</p>
 							<ul class="mt-[11px] pl-[30px] spark:pl-[20px] small:pl-[15px] mb-auto">
@@ -672,7 +701,7 @@
 		</div>
 		<div class="button" style="margin-top: 10px; margin-bottom: 90px;">
 			<div class="container-fluid">
-				<button type="button" class="px-[25px] py-[13px] bg-primary text-white rounded-regular">Отправить заявку</button>
+				<button type="button" class="px-[25px] py-[13px] bg-primary text-white rounded-regular hover:bg-primaryaccent transition ease-in-out duration-300">Отправить заявку</button>
 			</div>
 		</div>
 	</main>
@@ -761,8 +790,8 @@
 					</div>
 					<div class="flex items-center mt-[30px] space-x-[5px]">
 						<p class="text-stable font-medium">Мы в соцсетях:</p>
-						<a href="#"><img src="assets/img/instagram.webp" class="w-[32px] h-[32px]" alt=""></a>
-						<a href="#"><img src="assets/img/telegram.webp" class="w-[32px] h-[32px]" alt=""></a>
+						<a href="#" class="hover:scale-105 transition-all duration-300 ease-in-out"><img src="assets/img/instagram.webp" class="w-[32px] h-[32px]" alt=""></a>
+						<a href="#" class="hover:scale-105 transition-all duration-300 ease-in-out"><img src="assets/img/telegram.webp" class="w-[32px] h-[32px]" alt=""></a>
 					</div>
 				</div>
 			</div>
