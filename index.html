@@ -4,11 +4,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Techhelp</title>
-	<link rel="stylesheet" href="assets/css/style.css">
-
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
 	<script defer src="assets/js/wow.min.js"></script>
 	<script defer src="assets/js/swiper.min.js"></script>
 	<script defer src="assets/js/plugins/mask.min.js"></script>
@@ -17,8 +16,8 @@
 	<link rel="stylesheet" href="assets/css/swiper.min.css">
 
 </head>
-<body class="font-montserrat" x-data="{unscroll: false, modal: false}" :class="unscroll ? 'overflow-hidden' : 'overflow-auto'" x-init="new WOW().init();">
-	<header class="header">
+<body class="font-montserrat flex flex-col min-h-screen" x-data="{unscroll: false, modal: false}" :class="unscroll ? 'overflow-hidden' : 'overflow-auto'" x-init="new WOW().init();">
+	<header class="header animate__fadeIn wow" data-wow-duration="500ms">
 		<div class="container-fluid">
 			<div class="flex justify-between items-center">
 				<a href="/">
@@ -136,17 +135,17 @@
 			</div>
 		</div>
 	</header>
-	<nav class="menu regular:hidden">
+	<nav class="menu regular:hidden animate__fadeIn wow" data-wow-duration="700ms">
 		<div class="container-fluid">
-			<ul class="flex flex-wrap border-[1px] border-solid border-bluegray rounded-medium my-[49px]">
-				<li class="flex-grow flex justify-center rounded-medium flex text-regular menu-active"><a href="#" class="py-[18px] px-[20px]">Главная</a></li>
-				<li class="flex-grow flex justify-center rounded-medium flex text-regular"><a href="#" class="py-[18px] px-[20px] hover:text-primary transition">Услуги</a></li>
-				<li class="flex-grow flex justify-center rounded-medium flex text-regular"><a href="#" class="py-[18px] px-[20px] hover:text-primary transition">Подбор запчастей</a></li>
-				<li class="flex-grow flex justify-center rounded-medium flex text-regular"><a href="#" class="py-[18px] px-[20px] hover:text-primary transition">Выкуп нашего авто</a></li>
-				<li class="flex-grow flex justify-center rounded-medium flex text-regular"><a href="#" class="py-[18px] px-[20px] hover:text-primary transition">Отзывы</a></li>
-				<li class="flex-grow flex justify-center rounded-medium flex text-regular"><a href="#" class="py-[18px] px-[20px] hover:text-primary transition">Стоимость</a></li>
-				<li class="flex-grow flex justify-center rounded-medium flex text-regular"><a href="#" class="py-[18px] px-[20px] hover:text-primary transition">Примеры работ</a></li>
-				<li class="flex-grow flex justify-center rounded-medium flex text-regular"><a href="#" class="py-[18px] px-[20px] hover:text-primary transition">Контакты</a></li>
+			<ul class="flex flex-wrap justify-between border-[1px] border-solid border-light rounded-medium my-[49px]">
+				<li class="flex justify-center rounded-medium flex text-regular menu-active"><a href="#" class="py-[20px] px-[20px]">Главная</a></li>
+				<li class="flex justify-center rounded-medium flex text-regular transition hover:menu-active"><a href="#" class="py-[20px] px-[20px]">Услуги</a></li>
+				<li class="flex justify-center rounded-medium flex text-regular transition hover:menu-active"><a href="#" class="py-[20px] px-[20px]">Подбор запчастей</a></li>
+				<li class="flex justify-center rounded-medium flex text-regular transition hover:menu-active"><a href="#" class="py-[20px] px-[20px]">Выкуп нашего авто</a></li>
+				<li class="flex justify-center rounded-medium flex text-regular transition hover:menu-active"><a href="#" class="py-[20px] px-[20px]">Отзывы</a></li>
+				<li class="flex justify-center rounded-medium flex text-regular transition hover:menu-active"><a href="#" class="py-[20px] px-[20px]">Стоимость</a></li>
+				<li class="flex justify-center rounded-medium flex text-regular transition hover:menu-active"><a href="#" class="py-[20px] px-[20px]">Примеры работ</a></li>
+				<li class="flex justify-center rounded-medium flex text-regular transition hover:menu-active"><a href="#" class="py-[20px] px-[20px]">Контакты</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -1115,6 +1114,17 @@
 				</div>
 			</div>
 		</div>
+		<div class="text animate__fadeInUp wow" data-wow-duration="1000ms"  style="margin-top: 160px; margin-bottom: 20px;">
+			<div class="container-fluid">
+				<h2>Блог</h2>
+				<p>Прочитайте интересные статьи...</p>
+			</div>
+		</div>
+		<div class="blog">
+			<div class="container-fluid">
+
+			</div>
+		</div>
 		<div class="text animate__fadeInLeft wow" data-wow-duration="1000ms"  style="margin-top: 160px; margin-bottom: 20px;">
 			<div class="container-fluid">
 				<h2>Как мы работаем</h2>
@@ -1196,10 +1206,10 @@
 			</div>
 		</div>
 	</main>
-	<footer class="bg-lighty py-[35px]">
+	<footer class="bg-lighty py-[35px] mt-auto">
 		<div class="container-fluid">
 			<div class="flex flex-wrap reable:justify-center">
-				<div class="basis-[192px] middle:flex middle:flex-col middle:items-center reable:basis-[360px] pr-[29px] mb-[15px]">
+				<div class="basis-[192px] flex-grow middle:flex middle:flex-col middle:items-center reable:basis-[360px] pr-[29px] mb-[15px]">
 					<a href="/">
 						<img src="assets/img/demo/logo.svg" alt="" class="max-w-[192px]">
 					</a>
@@ -1214,7 +1224,7 @@
 						<p class="max-w-[130px] text-small"><strong>Вызвать эвакуатор</strong> бесплатно</p>
 					</div>
 				</div>
-				<div class="basis-[192px] reable:basis-[360px] mb-[15px]">
+				<div class="basis-[192px] flex-grow reable:basis-[360px] mb-[15px]">
 					<p class="text-moody text-semergy font-semibold">Навигация по сайту</p>
 					<ul>
 						<li class="my-[9px] text-stable"><a href="#" class="text-graystable hover:text-primary transition">Главная</a></li>
@@ -1226,7 +1236,7 @@
 						<li class="my-[9px] text-stable"><a href="#" class="text-graystable hover:text-primary transition">Контакты</a></li>
 					</ul>
 				</div>
-				<div class="basis-[192px] reable:basis-[360px] mb-[15px]">
+				<div class="basis-[192px] flex-grow reable:basis-[360px] mb-[15px]">
 					<p class="text-moody text-semergy font-semibold">Услуги</p>
 					<ul>
 						<li class="my-[9px] text-stable"><a href="#" class="text-graystable hover:text-primary transition">Ремонт авто</a></li>
@@ -1237,7 +1247,7 @@
 						<li class="my-[9px] text-stable"><a href="#" class="text-graystable hover:text-primary transition">Шиноионтаж</a></li>
 					</ul>
 				</div>
-				<div class="basis-[192px] reable:basis-[360px] mb-[15px]">
+				<div class="basis-[192px] flex-grow reable:basis-[360px] mb-[15px]">
 					<p class="text-moody text-semergy font-semibold">Преимущества</p>
 					<ul class="ter-list">
 						<li class="my-[9px] text-stable"><a href="#" class="text-graystable hover:text-primary transition">Более 1600кв.м автосервиса</a></li>
@@ -1250,7 +1260,7 @@
 						<li class="my-[9px] text-stable"><a href="#" class="text-graystable hover:text-primary transition">Професиональная и дорогая техника лучших производителей</a></li>
 					</ul>
 				</div>
-				<div class="basis-[230px] reable:basis-[360px] mb-[15px] pl-[15px]">
+				<div class="basis-[230px] flex-grow reable:basis-[360px] mb-[15px] pl-[15px]">
 					<div class="bg-secondary flex items-center rounded-medium px-[11px] py-[8px] text-stable">
 						<div class="w-[11px] h-[11px] bg-primary rounded-circle mr-[5px] animate-pulse"></div>
 						<span>Круглосуточно 24/7</span>
